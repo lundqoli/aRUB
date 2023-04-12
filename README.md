@@ -1,7 +1,16 @@
-# aRUB - Loss Function
+# aRUB - PyTorch Loss Function
 An Approximate Robust Upper Bound (aRUB) loss function implementation in PyTorch as taken from [Bertsimas et al. (2021)](https://arxiv.org/abs/2112.09279) for robustifying neural networks.
 
 ## Background
+Given a classification problem of $K$ different classes with a given dataset  $X_N=\{x_n, y_n\}_{n=1}^{N}$ of $N$ datapoints and where $x\in\mathbb{R}^m$, $m$ is the number of dimensions and $y\in\{1,...,K\}$, the task of training a robust neural network $h$ is to solve the robust loss problem or min-max problem with the cross-entropy loss function $\mathcal{L}$ and a perturbation $\delta$ within $\mathcal{U}_p=\\{\delta :||\delta||_p\leq\varepsilon\\}$, thus
+
+$$\min_{\theta}\\frac{1}{N}\sum_{n=1}^{N}\max_{\delta_n\in\mathcal{U}_p}\mathcal{L}(h(x_n+\delta_n,\theta),y_n).$$
+
+The solution to the min-max problem can be approximated with the approximate Robust Upper Bound (aRUB) loss function of the form
+
+$$ \log(\sum_{j=1}^{K}e^{c_{ky}^Th(x,\theta)+\varepsilon||\nabla_xc_{ky}^Th(x,\theta)||_q}),$$
+
+where $e_k$ and $e_y$ are zero vector except for the subscript index location, where the vector takes a value of 1, and $q$ is the dual norm for $p$, i.e. $1/p+1/q=1$. For further details see [Bertsimas et al. (2021)](https://arxiv.org/abs/2112.09279) and [Lundqvist (2023)](https://aaltodoc.aalto.fi/handle/123456789/120190).
 
 ## How to use
 
