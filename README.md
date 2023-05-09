@@ -14,6 +14,38 @@ where $e_k$ and $e_y$ are zero vector except for the subscript index location, w
 
 ## How to use
 
+### Basics
+Load the aRUB class to your code:
+```
+from aRUB import aRUB
+```
+Define the norm $p$ in $\mathcal{U}_p$ from the available "L1", "L2" and "Linf" as strings, the maximum perturbation (or norm size) $\varepsilon$ as float or double and the amount of classes $K$ as integer. Also specify the device. For example:
+```
+norm = "L1" 
+epsilon = 0.001
+n_classes = 10
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+```
+Construct and initialize the loss
+```
+criterion = aRUB(epsilon=epsilon, n_classes=n_classes, device=device, norm=norm)
+```
+Compute the loss with labels, inputs and the model. The model needs to be given as an argument as it the loss function uses the model's gradients
+```
+loss, net = criterion(labels, inputs, net)
+```
+Call backward.() pass normally
+```
+loss.backward()
+```
+
+### Example with Resnet18 and CIFAR10 dataset
+
+Run example.py
+```
+python3 example.py
+```
+
 ## Licensing
 
 ## References
