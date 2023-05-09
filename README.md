@@ -35,6 +35,7 @@ Compute the loss with labels, inputs and the model. The model needs to be given 
 #labels = correct labelling of the data
 #inputs = input tensor(s)
 #model = the neural network model
+
 loss, net = criterion(labels, inputs, model)
 ```
 Call backward.() pass normally
