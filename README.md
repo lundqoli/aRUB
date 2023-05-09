@@ -51,6 +51,7 @@ python3 example.py
 ```
 
 ## Licensing
+This code is licensed under GNU General Public License v3.0
 
 ## References
 Bertsimas, D., Boix, X., Carballo, K.V. and Hertog, D.D., 2021. *A robust optimization approach to deep learning*. arXiv preprint arXiv:2112.09279. Available at: [https://arxiv.org/abs/2112.09279](https://arxiv.org/abs/2112.09279)
