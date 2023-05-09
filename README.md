@@ -32,7 +32,10 @@ criterion = aRUB(epsilon=epsilon, n_classes=n_classes, device=device, norm=norm)
 ```
 Compute the loss with labels, inputs and the model. The model needs to be given as an argument as it the loss function uses the model's gradients
 ```
-loss, net = criterion(labels, inputs, net)
+#labels = correct labelling of the data
+#inputs = input tensor(s)
+#model = the neural network model
+loss, net = criterion(labels, inputs, model)
 ```
 Call backward.() pass normally
 ```
