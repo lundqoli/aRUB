@@ -8,7 +8,7 @@ $$\min_{\theta}\\frac{1}{N}\sum_{n=1}^{N}\max_{\delta_n\in\mathcal{U}_p}\mathcal
 
 The solution to the min-max problem can be approximated with the approximate Robust Upper Bound (aRUB) loss function of the form
 
-$$ \log(\sum_{j=1}^{K}e^{c_{ky}^Th(x,\theta)+\varepsilon||\nabla_xc_{ky}^Th(x,\theta)||_q}),$$
+$$ \log(\sum_{j=1}^{K}e^{(e_k-e_y)^Th(x,\theta)+\varepsilon||\nabla_xc_{ky}^Th(x,\theta)||_q}),$$
 
 where $e_k$ and $e_y$ are zero vector except for the subscript index location, where the vector takes a value of 1, and $q$ is the dual norm for $p$, i.e. $1/p+1/q=1$. For further details see [Bertsimas et al. (2021)](https://arxiv.org/abs/2112.09279) and [Lundqvist (2023)](https://aaltodoc.aalto.fi/handle/123456789/120190).
 
