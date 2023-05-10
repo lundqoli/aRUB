@@ -1,6 +1,5 @@
 import torch.nn as nn
 import torch
-import torch.nn.functional as F
 
 class aRUB(nn.Module):
 
@@ -20,18 +19,14 @@ class aRUB(nn.Module):
         self.create_grads = True
 
     def forward(self, y, x, net):
-        n_classes = self.n_classes
-        n_batch = x.shape[0]
-        epsilon = self.epsilon
-        device = self.device
 
+        n_batch = x.shape[0]
         x.requires_grad = True
 
         z = net(x)
-        z = z.to(device)
-        ones = torch.ones(n_classes).to(device)
-        ones.requires_grad = True
-        ck = torch.zeros((n_batch, n_classes, n_classes)).to(device)
+        z = z.to(self.device)
+        ones = torch.ones(self.n_classes,requires_grad=True).to(self.device)
+        ck = torch.zeros((n_batch, self.n_classes, self.n_classes)).to(self.device)
         ck[:] = torch.diag(ones)
 
         for i in range(0, n_batch):
@@ -42,7 +37,7 @@ class aRUB(nn.Module):
         ez = ez.squeeze(2)
 
         grads = []
-        for i in range(0, n_classes):
+        for i in range(0, self.n_classes):
             grads.append(torch.autograd.grad(ez[:, i], x,create_graph = True, grad_outputs=torch.ones_like(ez[:, i]))[0])
 
         stacked = torch.stack(grads)
@@ -56,7 +51,7 @@ class aRUB(nn.Module):
         elif self.norm=="Linf":
             xnorm = torch.linalg.norm(stacked_flatten, dim=2, ord=float("inf"))
 
-        exp = torch.exp(ez + epsilon*xnorm)
+        exp = torch.exp(ez + self.epsilon*xnorm)
         exp_sum = exp.sum(1)
 
         log_exp_sum = torch.log(exp_sum)
