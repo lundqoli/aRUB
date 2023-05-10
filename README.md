@@ -19,7 +19,7 @@ Load the aRUB class to your code:
 ```
 from aRUB import aRUB
 ```
-Define the norm $p$ in $\mathcal{U}_p$ from the available "L1", "L2" and "Linf" as strings, the maximum perturbation (or norm size) $\varepsilon$ as float or double and the amount of classes $K$ as integer. Also specify the device. For example:
+Define the norm $q$ which is dual to $\mathcal{U}_p$ from the available "L1", "L2" and "Linf" as strings, the maximum perturbation (or norm size) $\varepsilon$ as float or double and the amount of classes $K$ as integer. Also specify the device. For example:
 ```
 norm = "L1" 
 epsilon = 0.001
